@@ -1,2 +1,4 @@
 .env
 venv/
+flaskapp/snowconn.py
+sample.py
