@@ -3,3 +3,4 @@ venv/
 flaskapp/snowconn.py
 sample.py
 prompts
+__pycache__/
