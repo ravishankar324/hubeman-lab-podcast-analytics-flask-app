@@ -237,4 +237,5 @@ def process_query():
 
 if __name__ == '__main__':
     # Flask running on port 5000 by default
-    app.run(debug=True, host="0.0.0.0", port=10000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True, host="0.0.0.0", port=port)
