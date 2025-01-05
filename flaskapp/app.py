@@ -9,7 +9,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": ["http://localhost:3000", "https://huberman-lab-podcast-analytics.vercel.app"]}})
+
 
 # Function to get a Snowflake connection
 def get_db_connection():
