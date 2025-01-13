@@ -3,6 +3,8 @@ import snowflake.connector
 import os
 from flask_cors import CORS
 import requests
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.backends import default_backend
 from openai import OpenAI
 from dotenv import load_dotenv
 
@@ -11,6 +13,11 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": ["http://localhost:3000", "https://huberman-lab-podcast-analytics.vercel.app"]}})
 
+snowflake_key= serialization.load_pem_private_key(
+    private_key_pem.encode(),  # Convert string to bytes
+    password=None,             # Use None if the key is not password-protected
+    backend=default_backend()
+)
 
 # Function to get a Snowflake connection
 def get_db_connection():
@@ -22,7 +29,7 @@ def get_db_connection():
             warehouse=os.getenv('SNOWFLAKE_WAREHOUSE'),
             database=os.getenv('SNOWFLAKE_DATABASE'),
             schema=os.getenv('SNOWFLAKE_SCHEMA'),
-            private_key = os.getenv('SNOWFLAKE_PRIVATE_KEY')
+            private_key = snowflake_key
         )
         return conn
     except Exception as e:
