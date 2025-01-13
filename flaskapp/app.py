@@ -12,7 +12,7 @@ load_dotenv()
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": ["http://localhost:3000", "https://huberman-lab-podcast-analytics.vercel.app"]}})
-
+private_key_pem = os.getenv('SNOWFLAKE_PRIVATE_KEY')
 snowflake_key= serialization.load_pem_private_key(
     private_key_pem.encode(),  # Convert string to bytes
     password=None,             # Use None if the key is not password-protected
