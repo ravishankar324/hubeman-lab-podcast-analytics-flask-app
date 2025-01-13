@@ -21,7 +21,8 @@ def get_db_connection():
             account=os.getenv('SNOWFLAKE_ACCOUNT'),
             warehouse=os.getenv('SNOWFLAKE_WAREHOUSE'),
             database=os.getenv('SNOWFLAKE_DATABASE'),
-            schema=os.getenv('SNOWFLAKE_SCHEMA')
+            schema=os.getenv('SNOWFLAKE_SCHEMA'),
+            private_key = os.getenv('SNOWFLAKE_PRIVATE_KEY')
         )
         return conn
     except Exception as e:
